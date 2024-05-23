@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AddTaskForm from './AddTaskForm.tsx';
+import Task from './Task';
 import "./App.css"
 
 interface TaskType {
@@ -27,13 +28,23 @@ const App: React.FC = () => {
         setTasks(tasks.filter(task => task.id !== id));
     };
 
+    const toggleTaskCompletion = (id: string) => {
+        setTasks(tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task));
+    };
 
     return (
-        <div>
+        <div className="app">
             <h1>ToDo List</h1>
             <AddTaskForm currentTask={currentTask} setCurrentTask={setCurrentTask} addTask={addTask} />
             <ul className="task-list">
-
+                {tasks.map(task => (
+                    <Task
+                        key={task.id}
+                        task={task}
+                        deleteTask={deleteTask}
+                        toggleTaskCompletion={toggleTaskCompletion}
+                    />
+                ))}
             </ul>
         </div>
     );
