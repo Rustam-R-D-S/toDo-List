@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AddTaskForm from './AddTaskForm.tsx';
 import "./App.css"
 
 interface TaskType {
@@ -30,6 +31,7 @@ const App: React.FC = () => {
     return (
         <div>
             <h1>ToDo List</h1>
+            <AddTaskForm currentTask={currentTask} setCurrentTask={setCurrentTask} addTask={addTask} />
             <ul className="task-list">
 
             </ul>
